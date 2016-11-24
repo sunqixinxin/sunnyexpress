@@ -1,0 +1,200 @@
+<html>
+	<head>
+		<title>Http Request Sender</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<style type="text/css">
+			body td {
+				border-style:solid;
+				border-width:1px;
+				border-color:#33CCFF;
+				padding:2px;
+				text-align:left;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<h3>Http Request Info:</h3>
+			<!--request info start-->
+			<table>
+				<tr>
+					<td style="width:130px;">RequestMethod:</td>
+					<td style="width:130px;">
+						<select id="ctrl_RequestMethod" style="width:160px;">
+							<option value="GET">GET</option>
+							<option value="POST">POST</option>
+							<option value="PUT">PUT</option>
+							<option value="HEAD">HEAD</option>
+							<option value="PATCH">PATCH</option>
+							<option value="DELETE">DELETE</option>
+							<option value="TRACE">TRACE</option>
+							<option value="OPTION">OPTION</option>
+							<option value="CONNECT">CONNECT</option>
+						</select>
+					</td>
+					<td style="width:150px;">RequestContentType:</td>
+					<td style="width:450px;" colspan="2">
+						<select id="ctrl_RequestContentType" style="width:357px;">
+							<option value="text/html">text/html</option>
+							<option value="text/xml">text/xml</option>
+							<option value="text/plain">text/plain</option>
+							<option value="application/json">application/json</option>
+							<option value="application/x-www-form-urlencoded">application/x-www-form-urlencoded</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>RequestHeaders:</td>
+					<td colspan="4">
+						<textarea rows="10000" cols="10000" id="ctrl_RequestHeaders" style="width:700px; height:50px;">
+						</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>RequestUrl:</td>
+					<td colspan="4">
+						<input type="text" id="ctrl_RequestUrl" style="width:700px;"/>
+					</td>
+				</tr>
+				<tr>
+					<td>RequestParameters:</td>
+					<td colspan="4">
+						<textarea rows="10000" cols="10000" id="ctrl_RequestParameters" style="width:700px; height:100px;">
+						</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>ClientCertInfo:</td>
+					<td colspan="4">
+						StoreName:
+						<select id="ctrl_StoreName" style="width:150px;">
+							<option value="AddressBook">AddressBook</option>
+							<option value="AuthRoot">AuthRoot</option>
+							<option value="CertificateAuthority">CertificateAuthority</option>
+							<option value="Disallowed">Disallowed</option>
+							<option value="My">My</option>
+							<option value="Root">Root</option>
+							<option value="TrustedPeople">TrustedPeople</option>
+							<option value="TrustedPublisher">TrustedPublisher</option>
+						</select>
+						FindType:
+						<select id="ctrl_FindType" style="width:300px;">
+							<option value="FindByThumbprint">FindByThumbprint</option>
+							<option value="FindBySubjectName">FindBySubjectName</option>
+							<option value="FindBySubjectDistinguishedName">FindBySubjectDistinguishedName</option>
+							<option value="FindByIssuerName">FindByIssuerName</option>
+							<option value="FindByIssuerDistinguishedName">FindByIssuerDistinguishedName</option>
+							<option value="FindBySerialNumber">FindBySerialNumber</option>
+							<option value="FindByTimeValid">FindByTimeValid</option>
+							<option value="FindByTimeNotYetValid">FindByTimeNotYetValid</option>
+							<option value="FindByTimeExpired">FindByTimeExpired</option>
+							<option value="FindByTemplateName">FindByTemplateName</option>
+							<option value="FindByApplicationPolicy">FindByApplicationPolicy</option>
+							<option value="FindByCertificatePolicy">FindByCertificatePolicy</option>
+							<option value="FindByExtension">FindByExtension</option>
+							<option value="FindByKeyUsage">FindByKeyUsage</option>
+							<option value="FindBySubjectKeyIdentifier">FindBySubjectKeyIdentifier</option>
+						</select></br>
+						StoreLocation:
+						<select id="ctrl_StoreName" style="width:132px;">
+							<option value="CurrentUser">CurrentUser</option>
+							<option value="LocalMachine">LocalMachine</option>
+						</select>
+						FindValue:<input type="text" id="ctrl_FindValue" style="width:300px; "/>
+						<button type="button" id="btn_send" class="btn btn-primary" onclick="validateCert();">validation</button>
+					</td>
+				</tr>
+				<tr>
+					<td>Credential:</td>
+					<td colspan="4">
+						UserName:<input type="text" id="ctrl_UserName" style="width:100px; "/>
+						Password:<input type="text" id="ctrl_Password" style="width:100px; "/>
+						Domain:<input type="text" id="ctrl_Domain" style="width:100px; "/>
+					</td>
+				</tr>
+				<tr>
+					<td>Remarks:</td>
+					<td colspan="4">
+						<textarea rows="10000" cols="10000" id="ctrl_Remarks" style="width:700px; height:50px;">
+						</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>ConfigurationName:</td>
+					<td><input type="text" id="ctrl_ConfigurationName" style="width:180px;"/></td>
+					<td>CategoryName:</td>
+					<td><input type="text" id="ctrl_CategoryName" style="width:180px;"/></td>
+					<td>
+						<button type="button" id="btn_save" class="btn btn-primary" onclick="saveRequestInfo();">save</button>
+						<button type="button" id="btn_del" class="btn btn-primary" onclick="delRequestInfo();">del</button>
+						<button type="button" id="btn_send" class="btn btn-primary" onclick="sendHttpRequest();">send</button>
+					</td>
+				</tr>
+			</table>
+			<!--request info end-->
+		</div>
+		<div>
+			<h3>Http Response Info:</h3>
+			<label><input type="checkbox" id="checkBox_SaveRemoteServerCert" value="">Save Remote Server Certs</input></label>
+			<label><input type="checkbox" id="checkBox_AutoSaveHistory" value="">Auto Save History</input></label>
+			<button type="button" id="btn_ClearResponse" class="btn btn-primary" onclick="clearResponse();">Clear Response</button>
+			<button type="button" id="btn_AddHistory" class="btn btn-primary" onclick="addResponseHistory();">Add History</button>
+			<input type="text" id="tb_HistoryRemarks" style="width:180px;"/>
+			<!--response info start-->
+			<table>
+				<tr>
+					<td style="width:60px;">Version:</td>
+					<td style="width:100px;"><input type="text" id="ctrl_HttpVersion" style="width:80px;" readonly/></td>
+					<td style="width:50px;">Status:</td>
+					<td style="width:120px;"><input type="text" id="ctrl_Status" style="width:100px;" readonly/></td>
+					<td style="width:90px;">Total Time:</td>
+					<td style="width:150px;"><input type="text" id="ctrl_TotalTime" style="width:100px;" readonly/>(ms)</td>
+					<td style="width:330px;">
+						
+					</td>
+				</tr>
+				<tr>
+					<td>Headers:</td>
+					<td colspan="7">
+						<textarea rows="10000" cols="10000" id="ctrl_Headers" style="width:800px; height:80px;">
+						</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>Body:</td>
+					<td colspan="7">
+						<textarea rows="10000" cols="10000" id="ctrl_Body" style="width:800px; height:200px;">
+						</textarea>
+					</td>
+				</tr>
+			</table>
+			<!--response info end-->
+		</div>
+	</body>
+	
+	<script>
+		function sendHttpRequest() {
+			alert(1);
+		}
+		
+		function saveRequestInfo() {
+			alert(2);
+		}
+		
+		function delRequestInfo() {
+			alert(3);
+		}
+		
+		function clearResponse() {
+			alert(4);
+		}
+		
+		function addResponseHistory() {
+			alert(5);
+		}
+		
+		function validateCert() {
+			alert(6);
+		}
+	</script>
+</html>
