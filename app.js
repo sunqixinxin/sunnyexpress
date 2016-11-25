@@ -6,16 +6,20 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
+
+//====================routes set start====================
 var index = require('./routes/index');
 var hrequest = require('./routes/httprequest');
 var subform = require('./routes/subform');
 var usesession = require('./routes/usesession');
 var usecookies = require('./routes/usecookies');
 var usecrypto = require('./routes/usecrypto');
-var reg = require('./routes/reg');
-var login = require('./routes/login');
-var logout = require('./routes/logout');
 
+// login
+var reg = require('./routes/login/reg');
+//var login = require('./routes/login/login');
+//var logout = require('./routes/login/logout');
+//====================routes set end====================
 var app = express();
 
 // view engine setup
@@ -31,15 +35,19 @@ app.use(cookieParser('Wilson'));
 app.use(session({ secret: 'wilson'}));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//====================views set start====================
 app.use('/', index);
 app.use('/httprequest', hrequest);
 app.use('/subform', subform);
 app.use('/usesession', usesession);
 app.use('/usecookies', usecookies);
 app.use('/usecrypto', usecrypto);
-app.use('/reg', reg);
-app.use('/login', login);
-app.use('/logout', logout);
+
+// login
+app.use('/login/reg', reg);
+//app.use('/login/login', login);
+//app.use('/login/logout', logout);
+//====================views set end====================
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
