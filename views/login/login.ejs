@@ -13,15 +13,15 @@
 	<body>
 		<div id="container" class="container">
 			<% if(locals.success) { %>
-				<div id="alt_success" class="alert alert-success">
-					<%- success %>
-				</div>
+				<div id="alt_success" class="alert alert-success"> 
+					<%- success %> 
+				</div> 
 			<% } %>
 
 			<% if(locals.error) { %>
-				<div id="alt_warning" class="alert alert-warning">
-					<%= error %>
-				</div>
+				<div id="alt_warning" class="alert alert-warning"> 
+		          	<%= error %> 
+		        </div> 
 			<% } %>
 
 			<form class="form-signin" role="form" method="post">
@@ -64,34 +64,5 @@
             }
             return result;
     }
-
-    $(function(){
-        $('#btnSub').on('click',function(){           
-            var 
-            $txtUserName = $('#txtUserName'),
-            txtUserNameVal = $.trim($txtUserName.val()),            
-            $txtUserPwd = $('#txtUserPwd'),
-            txtUserPwdVal = $.trim($txtUserPwd.val()),
-            errorTip = '<div id="errorTip" class="alert alert-warning">{0}</div> ';  
-
-            $("#errorTip,#alt_warning").remove();
-            
-            if(txtUserNameVal.length == 0)
-            {
-                $("#container").prepend(errorTip.format('用户名不能为空'));                
-                $txtUserName.focus();
-                return false;
-            }
-
-            if(txtUserPwdVal.length == 0)
-            {                
-                $("#container").prepend(errorTip.format('密码不能为空'));
-                $txtUserPwd.focus();
-                return false;
-            }
-            
-            return true;                
-        })
-    });
 
 </script>

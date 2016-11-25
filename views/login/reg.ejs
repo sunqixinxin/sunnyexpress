@@ -28,8 +28,8 @@
       <form class="form-signin" role="form" method="post">
         <h2 class="form-signin-heading">注册</h2>
 
-        <input id="txtUserName" name="txtUserName" type="text" class="form-control" placeholder="用户名" required autofocus />
-        <input id="txtUserPwd" name="txtUserPwd" type="password" class="form-control" placeholder="密码" required />
+        <input id="txtUserName" name="txtUserName" type="text" class="form-control" placeholder="用户名"  required autofocus />
+        <input id="txtUserPwd" name="txtUserPwd" type="password" class="form-control" placeholder="密码"  required />
         <input id="txtUserRePwd"  name="txtUserRePwd" type="password" class="form-control" placeholder="重复密码" required />   
 
         <button id="btnSub" class="btn btn-lg btn-primary" type="submit">注  册</button>
@@ -76,33 +76,20 @@
             txtUserRePwdVal = $.trim($txtUserRePwd.val()),
             errorTip = '<div id="errorTip" class="alert alert-warning">{0}</div> ';
             
-            $("#errorTip,#alt_sucess,#alt_warning").remove();
-
-            if(txtUserNameVal.length == 0) {
-            	$("#container").prepend(errorTip.format('用户名不能为空'));                
-                $txtUserName.focus();
-                return false;
-            }
-
-            if(txtUserPwdVal.length == 0) {                
-                $("#container").prepend(errorTip.format('密码不能为空'));
-                $txtUserPwd.focus();
-                return false;
-            }
-
-            if(txtUserRePwdVal.length == 0) {
-                $("#container").prepend(errorTip.format('重复密码不能为空'));                
-                $txtUserRePwd.focus();
-                return false;
-            }
+            $("#errorTip,#alt_success,#alt_warning").remove();
 
             if(txtUserPwdVal != txtUserRePwdVal) {                 
-                 $("#container").prepend(errorTip.format('两次密码不一致'));      
+                 $("#container").prepend(errorTip.format('两次密码不一致'));
+                 $("#errorTip").fadeOut(5000);        
                  $txtUserPwd.focus();
                  return false;
             }
 
             return true;
     	});
+
+        $('#alt_warning').on('load', function(){
+            $("#alt_warning").fadeOut(5000);     
+        });
     });
 </script>
