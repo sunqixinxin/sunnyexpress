@@ -43,7 +43,7 @@ pool.getConnection(function(err, connection) {
                 return;
             }
 
-            connection.release();
+            //connection.release();
 
             console.log("invoked[save]");
             callback(err,result);                     
@@ -61,7 +61,7 @@ pool.getConnection(function(err, connection) {
                 return;
             }
 
-            connection.release();
+            //connection.release();
 
             console.log("invoked[getUserNumByName]");
             callback(err,result);                     
@@ -79,7 +79,7 @@ pool.getConnection(function(err, connection) {
                 return;
             }
 
-            connection.release();
+            //connection.release();
 
             console.log("invoked[getUserByUserName]");
             callback(err,result);                     

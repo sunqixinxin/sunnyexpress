@@ -17,8 +17,8 @@ var usecrypto = require('./routes/usecrypto');
 
 // login
 var reg = require('./routes/login/reg');
-//var login = require('./routes/login/login');
-//var logout = require('./routes/login/logout');
+var login = require('./routes/login/login');
+var logout = require('./routes/login/logout');
 //====================routes set end====================
 var app = express();
 
@@ -45,8 +45,8 @@ app.use('/usecrypto', usecrypto);
 
 // login
 app.use('/login/reg', reg);
-//app.use('/login/login', login);
-//app.use('/login/logout', logout);
+app.use('/login/login', login);
+app.use('/login/logout', logout);
 //====================views set end====================
 
 // catch 404 and forward to error handler

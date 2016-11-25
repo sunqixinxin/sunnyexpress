@@ -5,7 +5,7 @@ var express = require('express'),
     TITLE_REG = '注册';
 
 router.get('/', function(reg, res) {
-	res.render('reg', {title: TITLE_REG});
+	res.render('login/reg', {title: TITLE_REG});
 });
 
 router.post('/', function(req, res) {
@@ -28,7 +28,7 @@ router.post('/', function(req, res) {
 
 		if(err) {
 			res.locals.error = err;
-          	res.render('reg', { title: TITLE_REG });
+          	res.render('login/reg', { title: TITLE_REG });
           	return;
       	}
 	});
@@ -36,18 +36,18 @@ router.post('/', function(req, res) {
 	newUser.save(function (err,result) {
 		if (err) {
 		  res.locals.error = err;
-		  res.render('reg', { title: TITLE_REG }); 
+		  res.render('login/reg', { title: TITLE_REG }); 
 		  return;            
 		}        
 
 		if(result.insertId > 0) {
-		  res.locals.success = '注册成功,请点击   <a class="btn btn-link" href="/login" role="button"> 登录 </a>' ;
+		  res.locals.success = '注册成功,请点击   <a class="btn btn-link" href="/login/login" role="button"> 登录 </a>' ;
 		}
 		else {
 		  res.locals.error = err;
 		}
 
-		res.render('reg', { title: TITLE_REG });
+		res.render('login/reg', { title: TITLE_REG });
 	});    
 });          
 
