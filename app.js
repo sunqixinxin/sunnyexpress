@@ -6,21 +6,26 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-
+var app = express();
 //====================routes set start====================
 var index = require('./routes/index');
+app.use('/', index);
 var hrequest = require('./routes/httprequest');
-var subform = require('./routes/subform');
-var usesession = require('./routes/usesession');
-var usecookies = require('./routes/usecookies');
-var usecrypto = require('./routes/usecrypto');
+app.use('/httprequest', hrequest);
 
 // login
 var reg = require('./routes/login/reg');
 var login = require('./routes/login/login');
 var logout = require('./routes/login/logout');
+app.use('/login/reg', reg);
+app.use('/login/login', login);
+app.use('/login/logout', logout);
+
+// study
+var bootstrap3 = require('./routes/study/bootstrap3', bootstrap3);
+app.use('/study/bootstrap3', bootstrap3);
 //====================routes set end====================
-var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,19 +40,6 @@ app.use(cookieParser('Wilson'));
 app.use(session({ secret: 'wilson'}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-//====================views set start====================
-app.use('/', index);
-app.use('/httprequest', hrequest);
-app.use('/subform', subform);
-app.use('/usesession', usesession);
-app.use('/usecookies', usecookies);
-app.use('/usecrypto', usecrypto);
-
-// login
-app.use('/login/reg', reg);
-app.use('/login/login', login);
-app.use('/login/logout', logout);
-//====================views set end====================
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
