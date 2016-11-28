@@ -13,8 +13,8 @@ router.post('/', function(req, res) {
 	userPwd = req.body['txtUserPwd'],
     userRePwd = req.body['txtUserRePwd'],      
     md5 = crypto.createHash('md5');
-
-    userPwd = md5.update(userPwd).digest('hex');
+    console.log(userPwd);
+    //userPwd = md5.update(userPwd).digest('hex');
 
     var newUser = new User({
 	  username: userName,
