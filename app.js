@@ -19,21 +19,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //====================routes set start====================
 var index = require('./routes/index');
-var hrequest = require('./routes/httprequest');
 app.use('/', index);
-app.use('/httprequest', hrequest);
+
+app.use('/httprequest', require('./routes/httprequest'));
 
 // login
-var reg = require('./routes/login/reg');
-var login = require('./routes/login/login');
-var logout = require('./routes/login/logout');
-app.use('/login/reg', reg);
-app.use('/login/login', login);
-app.use('/login/logout', logout);
+app.use('/login/reg', require('./routes/login/reg'));
+app.use('/login/login', require('./routes/login/login'));
+app.use('/login/logout', require('./routes/login/logout'));
 
 // study
-var bootstrap3 = require('./routes/study/bootstrap3', bootstrap3);
-app.use('/study/bootstrap3', bootstrap3);
+app.use('/study/bootstrap3', require('./routes/study/bootstrap3'));
+
 //====================routes set end====================
 
 // view engine setup
