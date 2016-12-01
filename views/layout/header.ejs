@@ -1,37 +1,35 @@
-<div class="navbar navbar-default navbar-static-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">         
-      <a class="navbar-brand" href="/">Porschev - Nodejs + Express + Ejs + MySQL + Bootstrap 示例</a>
+<div class="navbar navbar-default navbar-static-top" role="navigation">  
+  <div class="container">  
+    
+    <div class="navbar-header"> 
+      <a class="navbar-brand" href="/">Nodejs + Express + Ejs + Bootstrap 示例</a>
     </div>
 
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <!--menu start-->
+      <ul class="nav navbar-nav">
+        <li><a href="/httprequest">HttpRequest</a></li>
+        <li><a href="/tools/index">Tools</a><li>
+        <li><a href="/test" target="_blank">Test</a><li>
+        <li><a href="/study/bootstrap3">bootstrap3 demo</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/study/bootstrap3">bootstrap3 demo</a></li>
+          </ul>
+        </li>
+      </ul> 
+      <!--menu end-->
 
-    <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <!--menu start-->
-        <ul class="nav navbar-nav navbar-left">
-          <li><a href="/httprequest">HttpRequest</a></li>
-          <li><a href="/tools/index">Tools</a><li>
-          <li><a href="/test" target="_blank">Test</a><li>
-          <li><a href="/study/bootstrap3">bootstrap3 demo</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="/study/bootstrap3">bootstrap3 demo</a></li>
-            </ul>
-          </li>
-        </ul> 
-        <!--menu end-->
-
-        <ul class="nav navbar-nav navbar-right">
-          <% if (locals.username) { %> 
-            <li><a href="#">        
-                  <%= username %>          
-            </a></li>
-            <li><a href="/login/logout">安全退出</a></li> 
-          <% } %>           
-        </ul>
-      </div>
-    </div>
+      <ul class="nav navbar-nav navbar-right">
+        <% if (locals.username) { %> 
+          <li><a href="#">        
+                <%= username %>          
+          </a></li>
+          <li><a href="/login/logout">安全退出</a></li> 
+        <% } %>           
+      </ul>
+    </nav>
 
   </div>
 </div>
