@@ -1,10 +1,12 @@
 {
   "name": "sunny",
   "version": "0.0.0",
+  "descriprtion": "",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
+
   "dependencies": {
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
@@ -14,6 +16,7 @@
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0",
     "express-session" : "latest",
-    "mysql" : "latest"
+    "mysql" : "latest",
+    "ejs-mate" : "latest"
   }
 }

@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var engine = require('ejs-mate');
 
 var app = express();
 
@@ -22,11 +23,15 @@ var index = require('./routes/index');
 app.use('/', index);
 
 app.use('/httprequest', require('./routes/httprequest'));
+app.use('/test', require('./routes/test'));
 
 // login
 app.use('/login/reg', require('./routes/login/reg'));
 app.use('/login/login', require('./routes/login/login'));
 app.use('/login/logout', require('./routes/login/logout'));
+
+// tools
+app.use('/tools/index', require('./routes/tools/index'));
 
 // study
 app.use('/study/bootstrap3', require('./routes/study/bootstrap3'));
@@ -36,6 +41,7 @@ app.use('/study/bootstrap3', require('./routes/study/bootstrap3'));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.engine('ejs', engine);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
