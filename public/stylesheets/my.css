@@ -1,0 +1,10 @@
+#main-content {
+  padding-top: 60px; 
+  padding-left: 5px;
+  padding-bottom: 60px;
+}
+
+.index {
+  background-image: url(../images/6.jpg);
+  background-size:oversize;
+}
