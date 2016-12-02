@@ -23,7 +23,7 @@ var index = require('./routes/index');
 app.use('/', index);
 
 app.use('/httprequest', require('./routes/httprequest'));
-app.use('/test', require('./routes/test'));
+app.use('/test/test', require('./routes/test/test'));
 
 // login
 app.use('/login/reg', require('./routes/login/reg'));
