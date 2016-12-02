@@ -26,8 +26,9 @@ app.use('/httprequest', require('./routes/httprequest'));
 app.use('/test/test', require('./routes/test/test'));
 
 // login
-app.use('/login/reg', require('./routes/login/reg'));
+app.use('/login', require('./routes/login/login'));
 app.use('/login/login', require('./routes/login/login'));
+app.use('/login/reg', require('./routes/login/reg'));
 app.use('/login/logout', require('./routes/login/logout'));
 
 // tools
