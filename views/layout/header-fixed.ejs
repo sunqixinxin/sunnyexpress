@@ -5,6 +5,15 @@
       <a class="navbar-brand" href="/">Nodejs + Express + Ejs + Bootstrap 示例</a>
     </div>
 
+    <ul class="nav navbar-nav navbar-right">
+      <% if (username) { %> 
+        <li><a href="#">        
+              <%= username %>          
+        </a></li>
+        <li><a href="/login/logout">安全退出</a></li> 
+      <% } %>           
+    </ul>
+
     <!--menu start-->
     <ul class="nav navbar-nav navbar-right">
       <li><a href="/httprequest">HttpRequest</a></li>
@@ -24,15 +33,6 @@
       </li>
     </ul> 
     <!--menu end-->
-
-    <ul class="nav navbar-nav navbar-right">
-      <% if (locals.username) { %> 
-        <li><a href="#">        
-              <%= username %>          
-        </a></li>
-        <li><a href="/login/logout">安全退出</a></li> 
-      <% } %>           
-    </ul>
 
   </div>
 </div>

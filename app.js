@@ -19,17 +19,39 @@ app.use(session({ secret: 'wilson'}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //====================routes set start====================
-var index = require('./routes/index');
-app.use('/', index);
-
-app.use('/httprequest', require('./routes/httprequest'));
-app.use('/test/test', require('./routes/test/test'));
-
 // login
 app.use('/login', require('./routes/login/login'));
 app.use('/login/login', require('./routes/login/login'));
 app.use('/login/reg', require('./routes/login/reg'));
 app.use('/login/logout', require('./routes/login/logout'));
+
+// Login validation
+app.use(function(req, res, next){
+  if(req.cookies.islogin)
+  { 
+    console.log('cookies:' + req.cookies.islogin);
+    req.session.username = req.cookies.islogin;
+  }  
+
+  if(req.session.username)
+  {    
+      console.log('session:' + req.session.username);
+      res.locals.username = req.session.username;      
+  }
+  else
+  {
+      res.redirect('/login');
+      return;    
+  }
+
+  next();
+});
+
+var index = require('./routes/index');
+app.use('/', index);
+
+app.use('/httprequest', require('./routes/httprequest'));
+app.use('/test/test', require('./routes/test/test'));
 
 // tools
 app.use('/tools/index', require('./routes/tools/index'));
@@ -43,6 +65,7 @@ app.use('/study/bootstrap3', require('./routes/study/bootstrap3'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('ejs', engine);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
